@@ -62,5 +62,72 @@ namespace ListMaster
             }
             return resultArray;
         }
+        public void FillTriangle(int[,] triangle)
+        {
+            int row = triangle.GetLength(0);
+            for (int i = 0; i < row; i++)
+            {
+                triangle[i, 0] = 1;
+                triangle[i, i] = 1;
+            }
+
+            for (int i = 2; i < row; i++)
+            {
+                for (int j = 1; j <= i; j++)
+                {
+                    triangle[i, j] =
+                        triangle[i - 1, j - 1] + triangle[i - 1, j];
+                }
+            }
+        }
+
+        const int cellWidth = 3;
+        public void PrintTriangle(int[,] triangle)
+        {
+            int row = triangle.GetLength(0);
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < row; j++)
+                {
+                    if (triangle[i, j] != 0)
+                        Console.Write($"{triangle[i, j],cellWidth}");
+                }
+                Console.WriteLine();
+            }
+        }
+        public void PrintGoodTriangle(int[,] triangle)
+        {
+            int row = triangle.GetLength(0);
+            int col = cellWidth * row;
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    Console.SetCursorPosition(col, i + 1);
+                    if (triangle[i, j] != 0) Console.Write($"{triangle[i, j],cellWidth}");
+                    col += cellWidth * 2;
+                }
+
+                col = cellWidth * row - cellWidth * (i + 1);
+
+                Console.WriteLine();
+            }
+        }
+        public void Magic(int[,] triangle)
+        {
+            int row = triangle.GetLength(0);
+            int col = row;
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    Console.SetCursorPosition(col, i + 1);
+                    if (triangle[i, j] % 2 != 0) Console.WriteLine("*");
+                    col += 2;
+                }
+                col = row - (i + 1);
+                Console.WriteLine();
+            }
+        }
     }
 }
