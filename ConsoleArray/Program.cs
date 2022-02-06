@@ -21,7 +21,8 @@ namespace ConsoleArray
                 int testNumber = Convert.ToInt32(Console.ReadLine());
                 switch (testNumber)
                 {
-                    case 61:       // Решение задания 61 - найти произведение двух матриц
+                    case 61:
+                        // Решение задания 61 - найти произведение двух матриц
 
                         var firstArray = am.CreateTwoDimentionalArray(3, 4);
                         am.FillTwoDimentionalArray(firstArray, 0, 3);
@@ -50,7 +51,7 @@ namespace ConsoleArray
                     case 63:
                         // 63. Печать треугольника Серпинского
 
-                        int row = 120;           //Количество строк в треугольнике
+                        int row = 120;
                         int[,] triangle = new int[row, row];
                         am.FillTriangle(triangle);
                         am.Magic(triangle);
@@ -59,7 +60,7 @@ namespace ConsoleArray
                     case 64:
                         // 64. Показать треугольник Паскаля - Сделать вывод в виде равнобедренного треугольника
 
-                        int row2 = 20;           //Количество строк в треугольнике
+                        int row2 = 20;
                         int[,] triangle2 = new int[row2, row2];
                         am.FillTriangle(triangle2);
                         am.PrintGoodTriangle(triangle2);
@@ -71,12 +72,10 @@ namespace ConsoleArray
                         var workArray2 = am.CreateTwoDimentionalArray(6, 7);
                         am.SpiralFillArray(workArray2);
                         am.PrintTwoDimentionalArray(workArray2);
-
-
                         break;
 
                     default:
-                        Console.WriteLine("Input error");
+                        Console.WriteLine("Input number error");
                         Environment.Exit(1);
                         break;
                 }

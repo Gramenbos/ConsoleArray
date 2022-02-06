@@ -170,61 +170,29 @@ namespace ListMaster
         }
         public void SpiralFillArray(int[,] array)
         {
-            int counter = 1;
-            int currentRowIndex = 0;
-            int startRow = 0;
-            int endRow = array.GetLength(1);
-            int currentColumnIndex = array.GetLength(1) - 1;
-            int endColumn = array.GetLength(0);
-            int direction = 1;
+            int numberRectangle = 0;
+            int M = array.GetLength(0);
+            int N = array.GetLength(1);
+            int i = 0;
+            int j = 0;
+            int number = 1;
 
-            //while (counter < array.GetLength(0) * array.GetLength(1))
-            //{
-            FillRow(array, currentRowIndex, startRow, endRow, direction);
-            startRow++;
-            FillColumn(array, currentColumnIndex, startRow, endColumn, direction);
-            direction *= -1;
-            currentRowIndex += array.GetLength(0) - 1;
-            FillRow(array, currentRowIndex, endRow - 1, startRow - 2, direction);
-            currentColumnIndex += array.GetLength(1) - 1;
-            FillColumn(array, currentColumnIndex, endColumn, startRow - 2, direction);
-            // }
-
-            void FillRow(int[,] array, int index, int start, int end, int direction)
+            while (number <= M * N)
             {
-                if (direction > 0)
-                {
-                    for (int i = start; i < end; i += direction)
-                    {
-                        array[index, i] = counter++;
-                    }
-                }
-                else
-                {
-                    for (int i = start; i > end; i += direction)
-                    {
-                        array[index, i] = counter++;
-                    }
-                }
-            }
-            void FillColumn(int[,] array, int index, int start, int end, int direction)
-            {
-                if (direction > 0)
-                {
-                    for (int j = start; j < end; j += direction)
-                    {
-                        array[j, index] = counter++;
-                    }
-                }
-                else
-                {
-                    for (int j = start; j > end; j += direction)
-                    {
-                        array[j, index] = counter++;
-                    }
-                }
-            }
+                array[i, j] = number;
 
+                if (i == numberRectangle && j < N - numberRectangle - 1) j++;
+                else if (j == N - numberRectangle - 1 && i < M - numberRectangle - 1) i++;
+                else if (i == M - numberRectangle - 1 && j > numberRectangle) j--;
+                else i--;
+
+                if (i == numberRectangle + 1 && j == numberRectangle && numberRectangle != N - numberRectangle - 1)
+                // Переходим к следующему прямоугольнику если достигли в текущем второй строки, первого столбца и мы не чертим последний столбец 
+                {
+                    numberRectangle++;
+                }
+                number++;
+            }
         }
     }
 }
