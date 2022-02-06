@@ -62,6 +62,45 @@ namespace ListMaster
             }
             return resultArray;
         }
+
+        public (int, int) FindIndexOfMinimumNumber(int[,] array)
+        {
+            int minimumNumber = array[0, 0];
+            int minRowIndex = 0;
+            int minColumnIndex = 0;
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (array[i, j] < minimumNumber)
+                    {
+                        minimumNumber = array[i, j];
+                        minRowIndex = i;
+                        minColumnIndex = j;
+                    }
+                }
+            }
+            return (minRowIndex, minColumnIndex);
+        }
+        public int[,] DeleteRowAndColumnInArray(int[,] array)
+        {
+            int[,] resultArray = new int[array.GetLength(0) - 1, array.GetLength(1) - 1];
+            (int rowIndex, int columnIndex) = FindIndexOfMinimumNumber(array);
+            int ki = 0;
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                if (i == rowIndex) continue;
+                int kj = 0;
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (j == columnIndex) continue;
+                    resultArray[ki, kj] = array[i, j];
+                    kj++;
+                }
+                ki++;
+            }
+            return resultArray;
+        }
         public void FillTriangle(int[,] triangle)
         {
             int row = triangle.GetLength(0);
@@ -129,5 +168,64 @@ namespace ListMaster
                 Console.WriteLine();
             }
         }
+        public void SpiralFillArray(int[,] array)
+        {
+            int counter = 1;
+            int currentRowIndex = 0;
+            int startRow = 0;
+            int endRow = array.GetLength(1);
+            int currentColumnIndex = array.GetLength(1) - 1;
+            int endColumn = array.GetLength(0);
+            int direction = 1;
+
+            //while (counter < array.GetLength(0) * array.GetLength(1))
+            //{
+            FillRow(array, currentRowIndex, startRow, endRow, direction);
+            startRow++;
+            FillColumn(array, currentColumnIndex, startRow, endColumn, direction);
+            direction *= -1;
+            currentRowIndex += array.GetLength(0) - 1;
+            FillRow(array, currentRowIndex, endRow - 1, startRow - 2, direction);
+            currentColumnIndex += array.GetLength(1) - 1;
+            FillColumn(array, currentColumnIndex, endColumn, startRow - 2, direction);
+            // }
+
+            void FillRow(int[,] array, int index, int start, int end, int direction)
+            {
+                if (direction > 0)
+                {
+                    for (int i = start; i < end; i += direction)
+                    {
+                        array[index, i] = counter++;
+                    }
+                }
+                else
+                {
+                    for (int i = start; i > end; i += direction)
+                    {
+                        array[index, i] = counter++;
+                    }
+                }
+            }
+            void FillColumn(int[,] array, int index, int start, int end, int direction)
+            {
+                if (direction > 0)
+                {
+                    for (int j = start; j < end; j += direction)
+                    {
+                        array[j, index] = counter++;
+                    }
+                }
+                else
+                {
+                    for (int j = start; j > end; j += direction)
+                    {
+                        array[j, index] = counter++;
+                    }
+                }
+            }
+
+        }
     }
 }
+

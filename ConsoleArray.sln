@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleArray", "ConsoleArray\ConsoleArray.csproj", "{F29BC3CF-A476-42B8-820D-216F2F03B93E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleArray", "ConsoleArray\ConsoleArray.csproj", "{F29BC3CF-A476-42B8-820D-216F2F03B93E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListMaster", "ListMaster\ListMaster.csproj", "{8263A04C-6A29-4518-82C1-87D4C2B8AED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListMaster", "ListMaster\ListMaster.csproj", "{8263A04C-6A29-4518-82C1-87D4C2B8AED9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
